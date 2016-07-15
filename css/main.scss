@@ -1,0 +1,72 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "utf-8";
+
+
+
+// Our variables
+$base-font-family: "Day Roman", serif;
+$display-font: "Soria", serif;
+$display-font-one: "Soria", serif;
+$sans-serif: "Adam CG", sans-serif;
+$subtle-hint-font: "Playfair Display", serif;
+
+$base-font-size:   16px;
+$base-font-weight: 400;
+$small-font-size:  $base-font-size * 0.875;
+$base-line-height: 1.5;
+
+$spacing-unit:     30px;
+
+$text-color:       #111;
+$background-color: #ffffff;
+$brand-color:      #2a7ae2;
+
+$grey-color:       #828282;
+$grey-color-light: lighten($grey-color, 40%);
+$grey-color-dark:  darken($grey-color, 25%);
+$link: #8AB9D1;
+$accent: #24536B;
+$accent2: #C21700;
+$accent3: #AA353E;
+$m-accent: #121212;
+$n-accent: #121212;
+$s-accent: #212121;
+$l-accent: #999;
+$h-accent: #aaa;
+$border-style: solid;
+
+// Width of the content area
+$content-width:    800px;
+$page-area-width: 100%;
+
+$on-palm:          600px;
+$on-laptop:        800px;
+
+
+
+// Use media queries like this:
+// @include media-query($on-palm) {
+//     .wrapper {
+//         padding-right: $spacing-unit / 2;
+//         padding-left: $spacing-unit / 2;
+//     }
+// }
+@mixin media-query($device) {
+    @media screen and (max-width: $device) {
+        @content;
+    }
+}
+
+
+
+// Import partials from `sass_dir` (defaults to `_sass`)
+@import
+		"3rd_party/bourbon/bourbon",
+        "3rd_party/neat/neat",
+        "resources",
+        "base",
+        "layout",
+        "syntax-highlighting"
+;

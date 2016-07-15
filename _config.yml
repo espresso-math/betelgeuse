@@ -1,0 +1,17 @@
+title: "Betelgeuse"
+working-title: "Betelgeuse"
+email: 
+
+permalink:  /:categories/:title/
+description: > 
+  A Theme for which I have high hopes
+baseurl: "" 
+url: "http://nup.pii.at"
+
+markdown: kramdown
+
+sass:
+  sass_dir: _sass
+  style: compressed
+
+exclude: ['config.ru', 'Gemfile', 'Gemfile.lock', 'vendor', 'Procfile', 'Rakefile']

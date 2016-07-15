@@ -1,0 +1,313 @@
+
+<script src="https://cdn.jsdelivr.net/crypto-js/3.1.2/rollups/sha256.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script type="text/javascript">	
+	function randomGen () {
+		var stng = "";
+		var alphabet = "abcdefghijklmnopqrstuvwxyz0123456789";
+		while (stng.length < 2048) {
+			stng += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+		}
+		return stng;
+	}
+	function workHard(form) {
+		var unhash = randomGen();
+		var hash = CryptoJS.SHA256(unhash);
+		form.glib.value = unhash;
+		form.glibhash.value = hash;
+	}
+	$(document).ready(function(){
+		var comment_no = 0;
+		$('.gravatar').each(function(i, img) {
+			
+			var email = img.alt;
+		    var base_url = "http://localhost:8080/?g=";
+		    var end_url = "";
+		    var url = base_url + email + end_url;
+		    img.src = url;
+
+		    comment_no = i + 1;
+
+		});
+
+		$('.counter').html(comment_no);
+	});
+	function hideAway() {
+		document.getElementById('throw-error').style.display="none";
+	}
+  function validatePooleForm(form) {
+  	var name=form.name.value;
+  	var comment=form.comment.value;
+  	if (name != '' && comment != '') {
+  		workHard(form);
+  		return true;
+  	}
+  	else {
+  		document.getElementById('throw-error').style.display= "block";
+  		$('html, body').animate({ scrollTop: $('#throw-error').offset().top }, 'slow');
+  		return false;
+  	}
+  }
+  function honeyPot(form) {
+    form.path.value = "{{ page.url }}";
+    var email=form.email.value;
+    var honey_handle = form.honey.value;
+    if (honey_handle == null || honey_handle == '') {
+    	if (validatePooleForm(form)) {
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
+    }
+    else {
+    	alert('Caught ye sucker!');
+    	return false;
+    }
+
+  }
+  function focusOnMe(id) {
+  	document.getElementById("laform").name.focus();
+  	document.getElementById("laform").inreplyto.value = id;
+  	document.getElementById("reply").style.display = "inline";
+  }
+  function unfocusOnMe(id) {
+  	document.getElementById("laform").inreplyto.value = "";
+  	document.getElementById("reply").style.display = "none";
+  }
+</script>
+<style type="text/css">
+	#hide {
+		display: none;
+	}
+	#reply {
+		display: none;
+		float: right;
+		color: #dd0000;
+		font-size: 0.5em;
+	}
+	#throw-error {
+		display: none;
+		background: #FF8282;
+		border-style: solid;
+		border-width: 1px;
+		border-color: #FCB8B8;
+		padding:20px;
+		border-radius: 3px;
+
+		font-weight: normal;
+		font-size: 1em;
+	}
+	.bold-style {
+		padding: 20px;
+		font-family: monospace;
+	}
+	.input-area {
+		height: 200px;
+		width: 100%;
+	}
+	.poole label {
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		font-weight: 900;
+		font-size: 0.8em;
+	}
+	.poole {
+		margin-top: 350px;
+	}
+	.button {
+		padding-top: 15px;
+		padding-bottom: 15px;
+		padding-left: 20px;
+		padding-right: 20px;
+		margin-top: 5px;
+		color: #111;
+		background-color: #fff;
+		border-color: #111;
+		border-width: 2px;
+		border-style: solid;
+		box-shadow: none;
+		text-transform: uppercase;
+		font-weight: 900;
+	}
+	.poole legend {
+		font-weight: 900;
+		font-size: 2em;
+	}
+	.poole-comments li {
+		list-style-type: none;
+		display: block;
+		border-top-width: 1px;
+		border-top-style: solid;
+		border-top-color: #d5d5d5;
+		margin-top: 10px;
+		padding-top: 10px;
+		margin-bottom: 10px; 
+
+	}
+	.poole-comments div {
+		font-size: 1.1em;
+		padding: 10px;
+		margin-left: 10px;
+	}
+	.poole-comments p {
+		display: inline-block;
+		font-size: 0.54em;
+		color: #555;
+		text-transform: uppercase;
+		font-weight: 700;
+		padding: 0;
+		margin-left: 10px;
+		margin-top: 0;
+	}
+	.poole-comments time {
+		display: inline-block;
+		font-size: 0.5em;
+		color: #666;
+		text-transform: uppercase;
+	}
+	.gravatar {
+		display: inline-block;
+		vertical-align: top;
+		width: 40px;
+		height: auto;
+		border-radius: 3px;
+		border-style: solid;
+		border-width: 1px;
+		border-color: #444;
+	}
+	.poole-comments a {
+		display: inline-block;
+		margin-left: 15px;
+		font-size: 0.5em;
+	}
+	.poole-comments a:hover {
+		text-decoration: underline;
+	}
+	.poole-comments > ul {
+		margin: 0;
+	}
+	.poole-comments {
+		margin-top: 40px;
+	}
+	.top-wrapper, .bottom-wrapper {
+		display: block;
+	}
+	.leftgroup {
+		float: left;
+		display: inline-block;
+	}
+	.rightgroup {
+		float:right;
+		display: inline-block;
+	}
+	.poole .name {
+		width: 130%;
+	}
+	.poole .email {
+		width: 100%;
+	}
+	.poole .website {
+		width: 100%;
+	}
+	fieldset {
+		padding: 15px;
+		border-style: solid;
+	}
+</style>
+
+<div id="throw-error" onclick="hideAway()">
+You must provide a name for your comment!        <i style="float:right;" class="fa fa-times"></i>
+</div>
+<form class="poole" action="http://localhost:8080/api/v1/post-comments" method="post" name="pooleform" onsubmit="return honeyPot(this)" id="laform">		
+	<fieldset>
+		<legend>Say something, Anything. <a class="display: inline-block;" id="reply" onclick="unfocusOnMe()">Clear reply <i style="color:#111;" class="fa fa-times"></i></a></legend>
+
+			<input type="hidden" name="redirect_to" value="{{site.url}}/comment/">
+
+			<div class="leftgroup">
+			  	<label>Name</label> <br>
+			  		<input type="text" name="name" class="bold-style name" > 
+		  	</div>
+		  	<div class="rightgroup">
+				<label>Email</label> <br>
+			  		<input type="text" name="email" class="bold-style email" >
+		  	</div>
+		  	<br><br><br><br><br>
+		  	<label>Website</label><br>
+		  		<input type="text" name="website" class="bold-style website"><br>
+		  	<label>Comment</label><br>
+		  		<textarea class="bold-style input-area" name="comment"></textarea>
+
+	  		<input type="text" name="path" id="hide">
+	  		<input type="text" name="inreplyto" id="hide">
+	  		<input type="text" name="honey" id="hide">
+	  		<input type="text" name="email0" id="hide">
+	  		<input type="text" name="glibhash" id="hide">
+	  		<input type="text" name="glib" id="hide">
+
+
+	  		<input type="submit" value="Post Comment" class="button">
+
+	  	</div>
+  </fieldset>
+</form>
+
+
+
+<div class="poole-comments">
+<h3><span class="counter">0</span> Comments</h3>
+<ul>
+  {% for comment in site.data.poole.sessions %}{% if comment.path == page.url %}{% if comment.inreplyto == '' and comment.honey == '' %}
+    <li>
+
+      <div class="top-wrapper">
+
+	      <img class="gravatar" alt="{{comment.email0}}" scr="http">
+	      <p class="poole-name">{{ comment.name }}</p>
+
+      </div>
+
+      <div class="poole-comment">
+        {{ comment.comment }}
+      </div>
+
+      <div class="bottom-wrapper">
+
+	      <time datetime="{{ comment.created | date_to_xmlschema }}">
+	        <i style="color: #333;padding: 5px;" class="fa fa-calendar"></i>{{ comment.created | date_to_long_string  }}
+	      </time>
+	      <a onclick="focusOnMe('{{comment._id}}')">Reply</a>
+
+      </div>
+
+      <ul>
+      	{% for comments in site.data.poole.sessions %}{% if comment._id == comments.inreplyto and comments.honey == ''%}
+      		
+	      	<li>
+
+	      		<div class="top-wrapper">
+		      		<img class="gravatar" alt="{{commens.email0}}" scr="htttp">
+	      			<p class="poole-name">{{ comments.name }}</p>
+	      		</div>
+
+			    <div>
+			    	{{ comments.comment }}
+			    </div>
+			      
+			    <div class="bottom-wrapper">
+
+			      <time datetime="{{ comment.created | date_to_xmlschema }}">
+			        <i style="color: #333;padding: 5px;" class="fa fa-calendar"></i>{{ comment.created | date_to_long_string  }}
+			      </time>
+
+      			</div>
+
+      		</li>
+      	{% endif %}{% endfor %}
+      </ul>
+
+    </li>
+  {% endif %}{% endif %}{% endfor %}
+</ul>
+</div>

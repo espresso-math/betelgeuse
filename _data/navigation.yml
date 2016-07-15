@@ -1,0 +1,25 @@
+# Site navigation links
+
+- title: Main
+  url: /
+
+- title: About
+  url: /about/
+
+- title: Blog
+  url: /
+
+- title: Math
+  url: /math/
+
+- title: Stories
+  url: /stories/
+
+- title: Tags
+  url: /tags/
+
+- title: Links
+  url: /links/
+
+- title: Search
+  url: /search/

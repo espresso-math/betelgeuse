@@ -1,0 +1,85 @@
+---
+layout: default_front
+---
+
+{% for i in site.posts %}  {% assign l = forloop.length %} {% break %} {% endfor %}
+{% assign arr = "3|2|3|2" | split:"|" %}
+{% assign counter = -1 %}
+{% assign first = 0 %}
+{% assign last = 0 %}
+{% for i in (1..l) %} 
+  {% for j in arr %}
+    {% if counter >= l %}
+      {% break %}
+    {% endif %}
+    {% assign counter = counter | plus:j %}
+
+    {% if j == '4' %}
+      <div class="grid-four">
+
+        {% for i in (first..counter) %} {% if i == l %} {% break %} {% endif %}
+        <article class="horizontal">
+          <h1 class="title" itemprop="name headline"><a href="{{ site.posts[i].url }}">{{ site.posts[i].title }}</a></h1>
+          <!--{% if page.author %}<h2 class="post-author"><span class="p-a-by">By </span>{{ page.author }}</h2>{% endif %}-->
+          <p class="cool"><time datetime="{{ site.posts[i].date | date_to_xmlschema }}" itemprop="datePublished">{{ site.posts[i].date | date: "%b %-d, %Y" }}</time>{% if site.posts[i].author %} </span>{% endif %} </p>
+          <p class="excerpt">
+          <span>{{ site.posts[i].excerpt | remove: '\[ ... \]' | remove: '\( ... \)' | markdownify | strip_html | strip_newlines | escape_once | truncatewords: 15 }}</span>
+          </p>
+          <center><div class="thin-line"></div></center>
+        </article>
+        {% endfor %}
+
+      </div>
+      {% assign first = counter | plus:1 %}
+    {% endif %}
+
+    {% if j == '2' %}
+
+      <div class="grid-two">
+
+          {% for i in (first..counter) %}{% if i == l %} {% break %} {% endif %}
+        <article class="horizontal">
+          <h1 class="title" itemprop="name headline"><a href="{{ site.posts[i].url }}">{{ site.posts[i].title }}</a></h1>
+          <!--{% if page.author %}<h2 class="post-author"><span class="p-a-by">By </span>{{ page.author }}</h2>{% endif %}-->
+          <p class="cool"><time datetime="{{ site.posts[i].date | date_to_xmlschema }}" itemprop="datePublished">{{ site.posts[i].date | date: "%b %-d, %Y" }}</time>{% if site.posts[i].author %} </span>{% endif %} </p>
+          <p class="excerpt">
+          <span>{{ site.posts[i].excerpt | remove: '\[ ... \]' | remove: '\( ... \)' | markdownify | strip_html | strip_newlines | escape_once | truncatewords: 15 }}</span>
+          </p>
+          <center><div class="thin-line"></div></center>
+        </article>
+        {% endfor %}
+      </div>
+      
+      {% assign first = counter | plus:1 %}
+
+    {% endif %}
+
+    {% if j == '3' %}
+      <div class="grid-three">
+
+          {% for i in (first..counter) %}{% if i == l %} {% break %} {% endif %}
+        <article class="horizontal">
+          <h1 class="title" itemprop="name headline"><a href="{{ site.posts[i].url }}">{{ site.posts[i].title }}</a></h1>
+          <!--{% if page.author %}<h2 class="post-author"><span class="p-a-by">By </span>{{ page.author }}</h2>{% endif %}-->
+          <p class="cool"><time datetime="{{ site.posts[i].date | date_to_xmlschema }}" itemprop="datePublished">{{ site.posts[i].date | date: "%b %-d, %Y" }}</time>{% if site.posts[i].author %} </span>{% endif %} </p>
+          <p class="excerpt">
+          <span>{{ site.posts[i].excerpt | remove: '\[ ... \]' | remove: '\( ... \)' | markdownify | strip_html | strip_newlines | escape_once | truncatewords: 15 }}</span>
+          </p>
+          <center><div class="thin-line"></div></center>
+        </article>
+        {% endfor %}
+      </div>
+      {% assign first = counter | plus:1 %}
+    {% endif %}
+    {% if j == '30'%}
+    first: {{first}} last: {{counter}}
+      {% assign first = counter | plus:1 %}{% if counter == l %} {% break %} {% endif %}
+
+    
+    {% endif %}
+
+  {% endfor %}
+
+{% endfor %}
+
+

@@ -1,0 +1,49 @@
+.wrapper {
+	width: 60%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+body {
+	font: 14pt/1.5 sans-serif;
+	height: 1500px;
+	background-color: #BEEB9F;
+}
+
+
+#frontmatter {
+	width: 500px;
+	height: 150px;
+	padding: 5px;
+	text-align: left;
+	content: "";
+	margin-top: 5px;
+}
+
+#title {
+	width: 500px;
+	height: 25px;
+	padding: 5px;
+	text-align: left;
+	content: "";
+	margin-top: 5px;
+	margin-left: 5px;
+}
+
+#body {
+	width: 500px;
+	height: 700px;
+	padding: 5px;
+	text-align: left;
+	content: "";
+	margin-top: 5px;
+}
+
+button {
+	padding: 5px 10px;
+	color: #000;
+	border: 2px solid #000;
+	background-color: white;
+	font-weight: 700;
+	margin-top: 25px;
+}
