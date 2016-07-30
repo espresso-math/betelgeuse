@@ -10,6 +10,9 @@ url: "http://nup.pii.at"
 
 markdown: kramdown
 
+source: _source
+destination: _build
+
 sass:
   sass_dir: _sass
   style: compressed
