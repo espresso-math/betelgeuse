@@ -13,6 +13,9 @@
 
 .site-title {
     font:  4rem/1.5 $display-font-one;
+    @include media-query($on-laptop) {
+        font: 3.65rem/1.5 $display-font-one;
+    }
     font-weight: 400;
     letter-spacing: 5px;
     //text-transform: uppercase;
@@ -250,9 +253,12 @@
 
 .post-title {
     font: 44pt/1.2 $display-font;
+    @include media-query($on-laptop) {
+        font: 33pt/1.2 $display-font;
+    }
     text-align: center;
     margin-bottom: 15px;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
 }
 
 .post-cool {
@@ -394,8 +400,13 @@ p.dropcap:first-child:first-letter {
     .horizontal:first-of-type {
         margin-left: 50% - $page-area-width / 4;
         @include media-query($on-laptop) {
-            margin-left: 50% - $page-area-width / 4 - $page-area-width / 8;
+            margin: 0 auto;
         }
+        .horizontal {
+        @include media-query($on-laptop) {
+            margin: 0 auto;
+        }
+    }
     }
 }
 
@@ -409,7 +420,12 @@ p.dropcap:first-child:first-letter {
     .horizontal:first-of-type {
         margin-left: 50% - $page-area-width / 4 - $page-area-width / 8;
         @include media-query($on-laptop) {
-            margin-left: 50% - $page-area-width / 3 - $page-area-width / 8;
+            margin: 0 auto;
+        }
+    }
+    .horizontal {
+        @include media-query($on-laptop) {
+            margin: 0 auto;
         }
     }
 }
@@ -484,12 +500,12 @@ p.dropcap:first-child:first-letter {
 }
 
 .horizontal:first-of-type {
-    padding-left: 0;
+    
     margin-left: auto;
 }
 
 .horizontal:last-of-type {
-    padding-right: 0;
+
     margin-right: auto;
     border-right: none;
 }
