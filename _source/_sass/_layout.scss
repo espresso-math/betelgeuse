@@ -401,12 +401,15 @@ p.dropcap:first-child:first-letter {
         margin-left: 50% - $page-area-width / 4;
         @include media-query($on-laptop) {
             margin: 0 auto;
+            margin-top: 25px;
         }
-        .horizontal {
+
+    }
+            .horizontal {
         @include media-query($on-laptop) {
             margin: 0 auto;
+            margin-top: 25px;
         }
-    }
     }
 }
 
@@ -421,11 +424,13 @@ p.dropcap:first-child:first-letter {
         margin-left: 50% - $page-area-width / 4 - $page-area-width / 8;
         @include media-query($on-laptop) {
             margin: 0 auto;
+            margin-top: 25px;
         }
     }
     .horizontal {
         @include media-query($on-laptop) {
             margin: 0 auto;
+            margin-top: 25px;
         }
     }
 }
@@ -455,7 +460,8 @@ p.dropcap:first-child:first-letter {
         margin: 0 auto;
     }
     @include media-query($on-laptop) {
-        width: $page-area-width / 3;
+        width: $page-area-width;
+        height: 150px;
     }
 
 
